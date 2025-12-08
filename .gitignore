@@ -1,44 +1,95 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Exclude everything by default
+*
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# But include the project directories we want to track
+!Desktop/
+!Desktop/MixedMakerShopSite/
+!Desktop/MixedMakerShopSite/**
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# Exclude common system and personal files
 .DS_Store
-*.pem
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# Exclude backup files
+*.backup
+*.bak
+*.swp
+*.tmp
 
-# env files (can opt-in for committing if needed)
-.env*
+# Exclude personal directories
+Documents/
+Downloads/
+Movies/
+Music/
+Pictures/
+Library/
+.cache/
+.config/
+.local/
+.npm/
+.node_repl_history
+.zsh_history
+.bash_history
 
-# vercel
-.vercel
+# Exclude development tool directories
+.vscode/
+.cursor/
+.idea/
+.node_modules/
+.npm/
+.cargo/
+.rustup/
+.gem/
+.nvm/
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Exclude system files
+.CFUserTextEncoding
+.app-store/
+.augment/
+.bash_sessions/
+.cocoapods/
+.codex/
+.colima/
+.continue/
+.cups/
+.docker/
+.electron-gyp/
+.expo/
+.fastlane/
+.git-hooks/
+.gitconfig
+.henry_last_sid
+.keras/
+.ollama/
+.pandoc/
+.pm2/
+.profile
+.qodo/
+.redhat/
+.ssh/
+.swiftpm/
+.tmux.conf
+.viminfo
+.zcompdump
+.zprofile
+.zprofile.bak.*
+.zshenv
+.zshrc
+.zshrc.bak.*
+.zshrc.save
+.zsh_sessions/
 
-# Local Netlify folder
-.netlify
+# Exclude project-specific files we don't want to track
+Desktop/MixedMakerShopSite/.gitignore.local
+Desktop/MixedMakerShopSite/.netlify/
+Desktop/MixedMakerShopSite/netlify/
+
+# Allow specific files at root if needed
+!.gitignore
+!.deploy-trigger
