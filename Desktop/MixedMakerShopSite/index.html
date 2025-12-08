@@ -1,0 +1,3894 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+  <title>MixedMakerShop – Henry AI, StrainSpotter.app & GoneFishin Keychains</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+
+    name="description"
+
+    content="MixedMakerShop – a tiny studio turning ideas into things you can hold and use: 3D prints, Henry AI, StrainSpotter.app, and GoneFishin Keychains."
+
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="m3-logo.svg" />
+  <link rel="apple-touch-icon" href="m3-logo.svg" />
+
+  <!-- Optional Google Font -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+
+    rel="stylesheet"
+
+  />
+
+
+
+  <style>
+
+    :root {
+
+      /* Brand palette – tweak these if you want to match the images more closely */
+
+      --mms-green-dark: #0b2f20;
+
+      --mms-green: #10412a;
+
+      --mms-orange: #f49b1a;
+
+      --mms-cream: #f3e9d9;
+
+      --mms-cream-deep: #e6d4be;
+
+      --mms-ink: #101418;
+
+
+
+      --radius-lg: 18px;
+
+      --radius-md: 12px;
+
+      --radius-pill: 999px;
+
+
+
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.28);
+
+      --shadow-subtle: 0 10px 25px rgba(0, 0, 0, 0.18);
+
+      --transition-fast: 0.16s ease-out;
+
+      --transition-med: 0.24s ease-out;
+
+    }
+
+
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+
+
+    body {
+
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont,
+
+        "Segoe UI", sans-serif;
+
+      background: radial-gradient(circle at top, #184c31 0, #061710 45%, #020905 100%);
+
+      color: var(--mms-cream);
+
+      line-height: 1.6;
+
+      -webkit-font-smoothing: antialiased;
+
+    }
+
+
+
+    img {
+
+      max-width: 100%;
+
+      display: block;
+
+    }
+
+
+
+    a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+
+    main {
+
+      min-height: 100vh;
+
+    }
+
+
+
+    /* Layout wrappers */
+
+    .shell {
+
+      width: min(1120px, 100% - 2.5rem);
+
+      margin-inline: auto;
+
+    }
+
+
+
+    .shell-wide {
+
+      width: min(1240px, 100% - 2.5rem);
+
+      margin-inline: auto;
+
+    }
+
+
+
+    /* Top bar / header */
+
+    header {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 40;
+
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+
+      background: linear-gradient(
+
+        to bottom,
+
+        rgba(3, 9, 5, 0.98),
+
+        rgba(3, 9, 5, 0.92),
+
+        rgba(3, 9, 5, 0.72)
+
+      );
+
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+
+    }
+
+
+
+    .nav {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding-block: 0.65rem;
+
+      gap: 1.5rem;
+
+      flex-wrap: nowrap;
+
+    }
+
+
+
+    .nav-left {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+      flex-shrink: 1;
+
+      min-width: 0;
+
+      max-width: 180px;
+
+      overflow: hidden;
+
+      padding-right: 0.5rem;
+
+    }
+
+    .nav-left > div {
+
+      min-width: 0;
+
+      flex: 1;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .logo-mark {
+
+      width: 32px;
+
+      height: 32px;
+
+      display: block;
+
+      object-fit: contain;
+
+    }
+
+
+
+    .logo-text-main {
+
+      font-weight: 600;
+
+      letter-spacing: 0.03em;
+
+      text-transform: uppercase;
+
+      font-size: 0.9rem;
+
+    }
+
+
+
+    .logo-text-sub {
+
+      font-size: 0.75rem;
+
+      color: rgba(243, 233, 217, 0.7);
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      max-width: 140px;
+
+    }
+
+
+
+    .nav-center {
+
+      display: flex;
+
+      gap: 0.75rem;
+
+      align-items: center;
+
+      font-size: 0.9rem;
+
+      flex-shrink: 0;
+
+      margin-left: auto;
+
+    }
+
+
+
+    .nav-link {
+
+      padding: 0.4rem 0.75rem;
+
+      border-radius: 999px;
+
+      border: 1px solid transparent;
+
+      color: rgba(243, 233, 217, 0.75);
+
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+
+        color var(--transition-fast), transform var(--transition-fast);
+
+    }
+
+
+
+    .nav-link:hover {
+
+      background: rgba(243, 233, 217, 0.07);
+
+      border-color: rgba(243, 233, 217, 0.16);
+
+      color: #fff;
+
+      transform: translateY(-1px);
+
+    }
+
+    .nav-link:focus-visible {
+
+      outline: 2px solid var(--mms-orange);
+
+      outline-offset: 2px;
+
+      border-radius: 999px;
+
+    }
+
+
+
+    .nav-link.active {
+
+      background: rgba(244, 155, 26, 0.18);
+
+      border-color: rgba(244, 155, 26, 0.7);
+
+      color: #fff;
+
+    }
+
+
+
+    .nav-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.5rem;
+
+    }
+
+
+
+    .pill {
+
+      font-size: 0.75rem;
+
+      padding: 0.25rem 0.7rem;
+
+      border-radius: 999px;
+
+      background: rgba(13, 90, 55, 0.85);
+
+      border: 1px solid rgba(205, 241, 221, 0.35);
+
+      color: rgba(232, 250, 241, 0.9);
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 0.25rem;
+
+    }
+
+
+
+    .pill-dot {
+
+      width: 7px;
+
+      height: 7px;
+
+      border-radius: 999px;
+
+      background: #3fd47b;
+
+      box-shadow: 0 0 0 5px rgba(63, 212, 123, 0.18);
+
+    }
+
+
+
+    .btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 0.45rem;
+
+      border-radius: var(--radius-pill);
+
+      padding: 0.4rem 0.95rem;
+
+      font-size: 0.85rem;
+
+      font-weight: 500;
+
+      border: 1px solid transparent;
+
+      cursor: pointer;
+
+      background: rgba(244, 155, 26, 0.96);
+
+      color: #201308;
+
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+
+        background var(--transition-fast);
+
+    }
+
+
+
+    .btn:hover {
+
+      transform: translateY(-1px);
+
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55);
+
+      background: #f7a531;
+
+    }
+
+    .btn:focus-visible {
+
+      outline: 2px solid var(--mms-orange);
+
+      outline-offset: 2px;
+
+    }
+
+
+
+    .btn-outline {
+
+      background: transparent;
+
+      border-color: rgba(243, 233, 217, 0.35);
+
+      color: rgba(243, 233, 217, 0.9);
+
+      box-shadow: none;
+
+    }
+
+
+
+    .btn-outline:hover {
+
+      background: rgba(243, 233, 217, 0.06);
+
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+
+    }
+
+
+
+    .btn-icon {
+
+      font-size: 1.1rem;
+
+    }
+
+    .btn-sm {
+
+      padding: 0.35rem 0.85rem;
+
+      font-size: 0.8rem;
+
+    }
+
+
+
+    /* Mobile nav */
+
+    .nav-toggle {
+
+      display: none;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(243, 233, 217, 0.35);
+
+      background: rgba(4, 10, 6, 0.9);
+
+      color: var(--mms-cream);
+
+      width: 34px;
+
+      height: 34px;
+
+      align-items: center;
+
+      justify-content: center;
+
+      cursor: pointer;
+
+      font-size: 1.15rem;
+
+    }
+
+
+
+    .nav-mobile-menu {
+
+      display: none;
+
+      flex-direction: column;
+
+      gap: 0.5rem;
+
+      padding: 0.75rem 0 1rem;
+
+      border-top: 1px solid rgba(243, 233, 217, 0.08);
+
+      margin-top: 0;
+
+    }
+
+
+
+    .nav-mobile-menu .nav-link {
+
+      display: block;
+
+      width: 100%;
+
+      text-align: left;
+
+    }
+
+
+
+    /* Hero */
+
+    .hero {
+
+      padding: 2.2rem 0 3.3rem;
+
+    }
+
+
+
+    .hero-inner {
+
+      display: grid;
+
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+
+      gap: 2.3rem;
+
+      align-items: center;
+
+    }
+
+
+
+    .hero-badge-row {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.75rem;
+
+      align-items: center;
+
+      margin-bottom: 1.25rem;
+
+    }
+
+
+
+    .hero-tagline-pill {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 0.45rem;
+
+      padding: 0.35rem 0.85rem;
+
+      border-radius: 999px;
+
+      background: rgba(8, 39, 23, 0.95);
+
+      border: 1px solid rgba(205, 241, 221, 0.45);
+
+      font-size: 0.8rem;
+
+      color: rgba(232, 250, 241, 0.9);
+
+    }
+
+
+
+    .hero-tagline-pill span.icon {
+
+      font-size: 1rem;
+
+    }
+
+
+
+    .hero-title {
+
+      font-size: clamp(2.6rem, 4vw, 3.2rem);
+
+      line-height: 1.05;
+
+      letter-spacing: -0.04em;
+
+      margin-bottom: 0.8rem;
+
+    }
+
+
+
+    .hero-title span.accent {
+
+      color: var(--mms-orange);
+
+    }
+
+
+
+    .hero-sub {
+
+      font-size: 0.98rem;
+
+      color: rgba(243, 233, 217, 0.8);
+
+      max-width: 32rem;
+
+      margin-bottom: 1.6rem;
+
+    }
+
+
+
+    .hero-cta-row {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.8rem;
+
+      align-items: center;
+
+      margin-bottom: 1.4rem;
+
+    }
+
+
+
+    .hero-footnote {
+
+      font-size: 0.8rem;
+
+      color: rgba(243, 233, 217, 0.65);
+
+    }
+
+
+
+    .hero-footnote strong {
+
+      color: rgba(243, 233, 217, 0.9);
+
+    }
+
+
+
+    .hero-media {
+
+      position: relative;
+
+      min-height: 260px;
+
+      padding-bottom: 5rem;
+
+    }
+
+
+
+    .hero-banner {
+
+      position: relative;
+
+      border-radius: 26px;
+
+      overflow: hidden;
+
+      border: 1px solid rgba(243, 233, 217, 0.18);
+
+      box-shadow: var(--shadow-soft);
+
+      background: transparent;
+
+      isolation: isolate;
+
+    }
+
+
+
+    .hero-banner img {
+
+      width: 100%;
+
+      height: auto;
+
+      display: block;
+
+      opacity: 1;
+
+    }
+
+
+
+    .hero-overlay {
+
+      position: absolute;
+
+      bottom: -3.5rem;
+
+      left: 0;
+
+      right: 0;
+
+      padding: 0.65rem 0.8rem;
+
+      border-radius: 18px;
+
+      background: radial-gradient(circle at top left, rgba(16, 65, 42, 0.4), rgba(2, 9, 5, 0.5));
+
+      backdrop-filter: blur(12px);
+
+      -webkit-backdrop-filter: blur(12px);
+
+      border: 1px solid rgba(205, 241, 221, 0.28);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+      font-size: 0.78rem;
+
+      color: rgba(231, 248, 240, 0.95);
+
+    }
+
+
+
+    .hero-overlay-label {
+
+      font-weight: 500;
+
+      margin-bottom: 0.15rem;
+
+    }
+
+
+
+    .hero-overlay-stat {
+
+      font-weight: 600;
+
+      color: var(--mms-orange);
+
+    }
+
+
+
+    /* Banner text overlay - positioned directly on the banner */
+
+    .hero-banner-text {
+
+      position: absolute;
+
+      bottom: 2rem;
+
+      left: 2rem;
+
+      right: 2rem;
+
+      padding: 1rem 1.4rem;
+
+      border-radius: 18px;
+
+      background: radial-gradient(circle at top left, rgba(16, 65, 42, 0.7), rgba(2, 9, 5, 0.8));
+
+      backdrop-filter: blur(12px);
+
+      -webkit-backdrop-filter: blur(12px);
+
+      border: 1px solid rgba(205, 241, 221, 0.3);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 1.5rem;
+
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+      z-index: 5;
+
+    }
+
+
+
+    .hero-banner-text-left {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.3rem;
+
+    }
+
+
+
+    .hero-banner-name {
+
+      font-size: 2rem;
+
+      font-weight: 800;
+
+      letter-spacing: -0.03em;
+
+      color: #f3e9d9;
+
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(244, 155, 26, 0.3);
+
+    }
+
+
+
+    .hero-banner-stat {
+
+      font-size: 0.95rem;
+
+      font-weight: 600;
+
+      color: var(--mms-orange);
+
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+    }
+
+
+
+    .hero-banner-text-right {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.2rem;
+
+      font-size: 0.78rem;
+
+      color: rgba(231, 248, 240, 0.95);
+
+      text-align: right;
+
+      line-height: 1.5;
+
+    }
+
+
+
+    .hero-stack {
+
+      position: absolute;
+
+      bottom: -4rem;
+
+      right: -15%;
+
+      width: clamp(170px, 27vw, 210px);
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.7rem;
+
+      pointer-events: none;
+
+      z-index: 10;
+
+    }
+
+
+
+    .hero-card-small {
+
+      background: rgba(5, 15, 9, 0.98);
+
+      border-radius: 18px;
+
+      border: 1px solid rgba(243, 233, 217, 0.2);
+
+      padding: 0.6rem 0.7rem;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.55rem;
+
+      font-size: 0.75rem;
+
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
+
+    }
+
+
+
+    .hero-card-small-icon {
+
+      width: 28px;
+
+      height: 28px;
+
+      border-radius: 999px;
+
+      background: radial-gradient(circle at 30% 0, #ffe7ba 0, #f49b1a 25%, #4a2500 100%);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 1rem;
+
+      color: #1b0c00;
+
+    }
+
+
+
+    .hero-card-small-label {
+
+      font-size: 0.7rem;
+
+      color: rgba(243, 233, 217, 0.75);
+
+    }
+
+
+
+    .hero-card-small-main {
+
+      font-weight: 600;
+
+      color: rgba(243, 233, 217, 0.96);
+
+    }
+
+
+
+    /* Sections */
+
+    section {
+
+      scroll-margin-top: 90px;
+
+      padding-block: 2.6rem;
+
+    }
+
+
+
+    section:nth-of-type(odd) .section-panel {
+
+      background: linear-gradient(
+
+        135deg,
+
+        rgba(8, 39, 23, 0.94),
+
+        rgba(3, 16, 10, 0.98)
+
+      );
+
+    }
+
+
+
+    section:nth-of-type(even) .section-panel {
+
+      background: linear-gradient(
+
+        135deg,
+
+        rgba(7, 27, 18, 0.96),
+
+        rgba(1, 9, 5, 0.98)
+
+      );
+
+    }
+
+
+
+    .section-panel {
+
+      border-radius: 24px;
+
+      padding: 1.8rem 1.6rem 2rem;
+
+      border: 1px solid rgba(243, 233, 217, 0.12);
+
+      box-shadow: var(--shadow-subtle);
+
+    }
+
+
+
+    .section-heading-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 1rem;
+
+      margin-bottom: 1.5rem;
+
+    }
+
+
+
+    .kicker {
+
+      font-size: 0.78rem;
+
+      letter-spacing: 0.09em;
+
+      text-transform: uppercase;
+
+      color: rgba(243, 233, 217, 0.6);
+
+      margin-bottom: 0.35rem;
+
+    }
+
+
+
+    .section-title {
+
+      font-size: 1.45rem;
+
+      letter-spacing: -0.03em;
+
+      margin-bottom: 0.25rem;
+
+    }
+
+
+
+    .section-sub {
+
+      font-size: 0.86rem;
+
+      color: rgba(243, 233, 217, 0.78);
+
+      max-width: 26rem;
+
+    }
+
+
+
+    /* Ventures */
+
+    .ventures-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      gap: 1rem;
+
+      margin-top: 0.4rem;
+
+    }
+
+
+
+    .venture-card {
+
+      border-radius: 18px;
+
+      padding: 0.9rem 0.9rem 1rem;
+
+      background: radial-gradient(
+
+        circle at top left,
+
+        rgba(244, 155, 26, 0.08),
+
+        rgba(6, 31, 20, 0.98)
+
+      );
+
+      border: 1px solid rgba(243, 233, 217, 0.18);
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      gap: 0.7rem;
+
+    }
+
+
+
+    .venture-label-row {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 0.35rem;
+
+      margin-bottom: 0.2rem;
+
+    }
+
+
+
+    .venture-name {
+
+      font-weight: 600;
+
+      font-size: 0.95rem;
+
+    }
+
+
+
+    .badge {
+
+      font-size: 0.68rem;
+
+      padding: 0.18rem 0.5rem;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(243, 233, 217, 0.25);
+
+      color: rgba(243, 233, 217, 0.85);
+
+      background: rgba(2, 9, 5, 0.9);
+
+      white-space: nowrap;
+
+    }
+
+
+
+    .venture-desc {
+
+      font-size: 0.8rem;
+
+      color: rgba(243, 233, 217, 0.8);
+
+      margin-bottom: 0.35rem;
+
+    }
+
+
+
+    .venture-meta {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 0.4rem;
+
+      font-size: 0.75rem;
+
+      color: rgba(243, 233, 217, 0.68);
+
+    }
+
+
+
+    .venture-link {
+
+      font-size: 0.78rem;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 0.25rem;
+
+      padding: 0.28rem 0.68rem;
+
+      border-radius: 999px;
+
+      background: rgba(243, 233, 217, 0.04);
+
+      border: 1px solid rgba(243, 233, 217, 0.25);
+
+      cursor: pointer;
+
+      transition: background var(--transition-fast), transform var(--transition-fast),
+
+        border-color var(--transition-fast);
+
+    }
+
+
+
+    .venture-link:hover {
+
+      background: rgba(243, 233, 217, 0.1);
+
+      border-color: rgba(244, 155, 26, 0.7);
+
+      transform: translateY(-1px);
+
+    }
+
+
+
+    /* Makes / gallery */
+
+    .makes-layout {
+
+      display: grid;
+
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+
+      gap: 1.5rem;
+
+      align-items: flex-start;
+
+    }
+
+
+
+    .makes-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 0.85rem;
+
+    }
+
+
+
+    .make-card {
+
+      border-radius: 16px;
+
+      padding: 0;
+
+      background: rgba(3, 17, 10, 0.98);
+
+      border: 1px solid rgba(243, 233, 217, 0.16);
+
+      display: flex;
+
+      flex-direction: column;
+
+      overflow: hidden;
+
+    }
+
+    .make-image {
+
+      width: 100%;
+
+      aspect-ratio: 1;
+
+      object-fit: cover;
+
+      border-bottom: 1px solid rgba(243, 233, 217, 0.16);
+
+    }
+
+    .make-content {
+
+      padding: 0.7rem 0.75rem 0.8rem;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.45rem;
+
+    }
+
+
+
+    .make-title {
+
+      font-size: 0.86rem;
+
+      font-weight: 600;
+
+    }
+
+
+
+    .make-meta-row {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.3rem;
+
+      font-size: 0.7rem;
+
+      color: rgba(243, 233, 217, 0.7);
+
+    }
+
+
+
+    .tag {
+
+      border-radius: 999px;
+
+      padding: 0.12rem 0.5rem;
+
+      border: 1px solid rgba(243, 233, 217, 0.18);
+
+      background: rgba(0, 0, 0, 0.4);
+
+    }
+
+
+
+    .makes-image-card,
+
+    .makes-info-card {
+
+      border-radius: 22px;
+
+      padding: 1.5rem;
+
+      background: linear-gradient(135deg, rgba(8, 39, 23, 0.94), rgba(3, 16, 10, 0.98));
+
+      border: 1px solid rgba(243, 233, 217, 0.18);
+
+      box-shadow: var(--shadow-subtle);
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+    .makes-info-card {
+
+      gap: 0;
+
+    }
+
+
+
+    .makes-image-card img {
+
+      border-radius: 16px;
+
+      border: 1px solid rgba(0, 0, 0, 0.4);
+
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+
+    }
+
+
+
+    .makes-image-caption {
+
+      position: static;
+
+      margin-top: 1rem;
+
+      padding: 1rem 1.2rem;
+
+      border-radius: 16px;
+
+      background: linear-gradient(135deg, rgba(8, 39, 23, 0.95), rgba(3, 16, 10, 0.98));
+
+      border: 1px solid rgba(244, 155, 26, 0.4);
+
+      font-size: 0.85rem;
+
+      color: rgba(243, 233, 217, 0.95);
+
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: space-between;
+
+      gap: 1rem;
+
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    }
+
+
+
+    /* Services */
+
+    .services-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      gap: 1rem;
+
+      margin-top: 0.4rem;
+
+    }
+
+
+
+    .service-card {
+
+      border-radius: 18px;
+
+      padding: 0.9rem 0.9rem 1.05rem;
+
+      background: rgba(5, 17, 10, 0.98);
+
+      border: 1px solid rgba(243, 233, 217, 0.18);
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.55rem;
+
+      font-size: 0.82rem;
+
+    }
+
+
+
+    .service-title {
+
+      font-weight: 600;
+
+      margin-bottom: 0.1rem;
+
+    }
+
+
+
+    .service-list {
+
+      list-style: none;
+
+      padding-left: 0;
+
+      display: grid;
+
+      gap: 0.18rem;
+
+    }
+
+
+
+    .service-list li::before {
+
+      content: "• ";
+
+      color: var(--mms-orange);
+
+    }
+
+
+
+    .service-meta {
+
+      margin-top: 0.35rem;
+
+      font-size: 0.75rem;
+
+      color: rgba(243, 233, 217, 0.72);
+
+    }
+
+
+
+    /* Journal */
+
+    .journal-grid {
+
+      display: grid;
+
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+
+      gap: 1rem;
+
+      margin-top: 0.5rem;
+
+    }
+
+
+
+    .journal-card {
+
+      border-radius: 18px;
+
+      padding: 0.9rem 0.9rem 1rem;
+
+      background: rgba(5, 15, 10, 0.94);
+
+      border: 1px solid rgba(243, 233, 217, 0.16);
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.4rem;
+
+      font-size: 0.82rem;
+
+    }
+
+
+
+    .journal-tag-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 0.4rem;
+
+      font-size: 0.72rem;
+
+      color: rgba(243, 233, 217, 0.7);
+
+    }
+
+
+
+    .journal-title {
+
+      font-weight: 600;
+
+      font-size: 0.95rem;
+
+    }
+
+
+
+    .journal-footer {
+
+      margin-top: 0.25rem;
+
+      font-size: 0.74rem;
+
+      color: rgba(243, 233, 217, 0.7);
+
+    }
+
+
+
+    /* About */
+
+    .about-layout {
+
+      display: grid;
+
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+
+      gap: 1.5rem;
+
+      align-items: flex-start;
+
+    }
+
+
+
+    .timeline {
+
+      border-left: 1px dashed rgba(243, 233, 217, 0.26);
+
+      padding-left: 1rem;
+
+      display: grid;
+
+      gap: 0.7rem;
+
+      font-size: 0.8rem;
+
+    }
+
+
+
+    .timeline-item {
+
+      position: relative;
+
+      padding-left: 0.4rem;
+
+    }
+
+
+
+    .timeline-item::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: -1.1rem;
+
+      top: 0.3rem;
+
+      width: 9px;
+
+      height: 9px;
+
+      border-radius: 999px;
+
+      background: var(--mms-orange);
+
+      box-shadow: 0 0 0 5px rgba(244, 155, 26, 0.16);
+
+    }
+
+
+
+    .timeline-year {
+
+      font-size: 0.75rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+
+      color: rgba(243, 233, 217, 0.65);
+
+      margin-bottom: 0.1rem;
+
+    }
+
+
+
+    .timeline-title {
+
+      font-weight: 600;
+
+      margin-bottom: 0.1rem;
+
+    }
+
+
+
+    /* Contact */
+
+    .contact-layout {
+
+      display: grid;
+
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.05fr);
+
+      gap: 1.5rem;
+
+      align-items: flex-start;
+
+    }
+
+
+
+    .contact-form {
+
+      display: grid;
+
+      gap: 0.8rem;
+
+      font-size: 0.86rem;
+
+    }
+
+
+
+    .field-group {
+
+      display: grid;
+
+      gap: 0.25rem;
+
+    }
+
+
+
+    label {
+
+      font-size: 0.8rem;
+
+      color: rgba(243, 233, 217, 0.9);
+
+    }
+
+
+
+    input,
+
+    textarea,
+
+    select {
+
+      border-radius: 12px;
+
+      border: 1px solid rgba(243, 233, 217, 0.3);
+
+      padding: 0.55rem 0.65rem;
+
+      background: rgba(3, 11, 7, 0.94);
+
+      color: rgba(243, 233, 217, 0.96);
+
+      font-family: inherit;
+
+      font-size: 0.86rem;
+
+      outline: none;
+
+      resize: vertical;
+
+      min-height: 2.35rem;
+
+    }
+
+
+
+    input:focus,
+
+    textarea:focus,
+
+    select:focus {
+
+      border-color: rgba(244, 155, 26, 0.8);
+
+      box-shadow: 0 0 0 1px rgba(244, 155, 26, 0.7);
+
+    }
+
+
+
+    textarea {
+
+      min-height: 120px;
+
+    }
+
+
+
+    .contact-note {
+
+      font-size: 0.8rem;
+
+      color: rgba(243, 233, 217, 0.7);
+
+    }
+
+    .form-message {
+
+      font-size: 0.9rem;
+
+      padding: 1.2rem 1.4rem;
+
+      border-radius: 12px;
+
+      margin-top: 1rem;
+
+      font-weight: 500;
+
+      line-height: 1.5;
+
+      animation: slideIn 0.3s ease-out;
+
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    }
+
+    @keyframes slideIn {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateY(-10px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+      }
+
+    }
+
+    .form-message.success {
+
+      background: linear-gradient(135deg, rgba(63, 212, 123, 0.2), rgba(46, 160, 93, 0.2));
+
+      border: 1px solid rgba(63, 212, 123, 0.5);
+
+      color: rgba(232, 250, 241, 0.98);
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+    }
+
+    .form-message.error {
+
+      background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(198, 40, 40, 0.2));
+
+      border: 1px solid rgba(244, 67, 54, 0.5);
+
+      color: rgba(255, 235, 238, 0.98);
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.75rem;
+
+    }
+
+    .form-message-icon {
+
+      font-size: 1.3rem;
+
+      flex-shrink: 0;
+
+    }
+
+
+
+    .contact-meta-cards {
+
+      display: grid;
+
+      gap: 0.8rem;
+
+      font-size: 0.82rem;
+
+    }
+
+
+
+    .contact-card {
+
+      border-radius: 16px;
+
+      padding: 0.8rem 0.9rem;
+
+      background: rgba(5, 16, 9, 0.96);
+
+      border: 1px solid rgba(243, 233, 217, 0.2);
+
+    }
+
+
+
+    .contact-card h4 {
+
+      font-size: 0.9rem;
+
+      margin-bottom: 0.25rem;
+
+    }
+
+
+
+    .contact-links {
+
+      font-size: 0.8rem;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.45rem;
+
+      margin-top: 0.35rem;
+
+    }
+
+
+
+    .contact-link-pill {
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(243, 233, 217, 0.3);
+
+      padding: 0.18rem 0.6rem;
+
+      background: rgba(0, 0, 0, 0.3);
+
+      cursor: pointer;
+
+      transition: background var(--transition-fast), transform var(--transition-fast);
+
+    }
+
+
+
+    .contact-link-pill:hover {
+
+      background: rgba(243, 233, 217, 0.1);
+
+      transform: translateY(-1px);
+
+    }
+
+
+
+    /* Footer */
+
+    footer {
+
+      border-top: 1px solid rgba(243, 233, 217, 0.12);
+
+      padding: 1.4rem 0 1.1rem;
+
+      background: radial-gradient(circle at top, #183b27 0, #020905 60%, #000000 100%);
+
+      font-size: 0.78rem;
+
+      color: rgba(243, 233, 217, 0.7);
+
+    }
+
+
+
+    .footer-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 0.8rem;
+
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .footer-row span strong {
+
+      color: rgba(243, 233, 217, 0.95);
+
+    }
+
+
+
+    .footer-links {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.6rem;
+
+    }
+
+
+
+    .footer-links a {
+
+      opacity: 0.8;
+
+    }
+
+
+
+    .footer-links a:hover {
+
+      opacity: 1;
+
+    }
+
+
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+
+      .hero-inner,
+
+      .makes-layout,
+
+      .about-layout,
+
+      .contact-layout {
+
+        grid-template-columns: minmax(0, 1fr);
+
+      }
+
+
+
+      .hero-media {
+
+        order: -1;
+
+      }
+
+
+
+      .hero {
+
+        padding-top: 1.6rem;
+
+      }
+
+
+
+      .hero-stack {
+
+        right: 4%;
+
+        transform: translateY(25%);
+
+      }
+
+    }
+
+
+
+    @media (max-width: 1400px) {
+
+      .logo-text-sub {
+
+        display: none;
+
+      }
+
+    }
+
+    @media (max-width: 1050px) {
+
+      .nav-left {
+
+        max-width: 150px;
+
+      }
+
+      .logo-text-main {
+
+        font-size: 0.85rem;
+
+      }
+
+      .nav {
+
+        gap: 2rem;
+
+      }
+
+    }
+
+    @media (max-width: 780px) {
+
+      header {
+        padding-block: 0;
+      }
+
+      .nav {
+        padding-block: 0.5rem;
+        gap: 0.75rem;
+        flex-wrap: nowrap;
+      }
+
+      .nav-left {
+        max-width: 140px;
+        gap: 0.5rem;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+
+      .logo-mark {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+      }
+
+      .logo-text-main {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .logo-text-sub {
+        display: none;
+      }
+
+      .nav-center {
+
+        display: none;
+
+      }
+
+
+
+      .nav-right {
+
+        display: none;
+
+      }
+
+
+
+      .nav-toggle {
+
+        display: inline-flex;
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+
+
+
+      .nav-mobile-menu {
+
+        display: flex;
+
+      }
+
+
+
+      .ventures-grid,
+
+      .services-grid {
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      }
+
+
+
+      .journal-grid {
+
+        grid-template-columns: minmax(0, 1fr);
+
+      }
+
+
+
+      .hero-title {
+
+        font-size: clamp(2.2rem, 9vw, 2.6rem);
+
+      }
+
+    }
+
+
+
+    @media (max-width: 600px) {
+
+      header {
+        padding-block: 0;
+      }
+
+      .nav {
+        padding-block: 0.45rem;
+        gap: 0.5rem;
+      }
+
+      .nav-left {
+        max-width: 120px;
+        gap: 0.4rem;
+      }
+
+      .logo-mark {
+        width: 26px;
+        height: 26px;
+      }
+
+      .logo-text-main {
+        font-size: 0.7rem;
+      }
+
+      .nav-toggle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.95rem;
+      }
+
+      section {
+
+        padding-block: 2.1rem;
+
+      }
+
+
+
+      .section-panel {
+
+        padding-inline: 1.1rem;
+
+        border-radius: 20px;
+
+      }
+
+
+
+      .ventures-grid,
+
+      .services-grid,
+
+      .makes-grid {
+
+        grid-template-columns: minmax(0, 1fr);
+
+      }
+
+
+
+      .hero-stack {
+
+        position: static;
+
+        transform: none;
+
+        margin-top: 0.8rem;
+
+        width: 100%;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <a href="#home" class="skip-link" style="position:absolute;left:-9999px;z-index:9999;padding:1rem;background:var(--mms-orange);color:#1b0c00;text-decoration:none;font-weight:600;">Skip to main content</a>
+
+  <style>
+
+    .skip-link:focus {
+
+      left: 1rem;
+
+      top: 1rem;
+
+    }
+
+  </style>
+
+  <header>
+
+    <div class="shell nav">
+
+      <div class="nav-left">
+
+        <img src="m3-logo.svg" alt="MixedMakerShop M3 logo" class="logo-mark" />
+
+        <div>
+
+          <div class="logo-text-main">MixedMakerShop</div>
+
+          <div class="logo-text-sub">From ideas to things you can hold</div>
+
+        </div>
+
+      </div>
+
+
+
+      <nav class="nav-center" aria-label="Main navigation">
+
+        <a href="#home" class="nav-link active">Home</a>
+
+        <a href="shop.html" class="nav-link">Shop</a>
+
+        <a href="#ventures" class="nav-link">Ventures</a>
+
+        <a href="#makes" class="nav-link">Makes</a>
+
+        <a href="#services" class="nav-link">Services</a>
+
+        <a href="#journal" class="nav-link">Journal</a>
+
+        <a href="#about" class="nav-link">About</a>
+
+        <a href="#contact" class="nav-link">Contact</a>
+
+      </nav>
+
+
+
+      <div class="nav-right">
+
+        <div class="pill">
+
+          <span class="pill-dot"></span>
+
+          One studio, many small ventures
+
+        </div>
+
+        <button class="btn btn-sm" onclick="scrollToSection('contact')">
+
+          <span>Request a custom make</span>
+
+          <span class="btn-icon">➜</span>
+
+        </button>
+
+      </div>
+
+
+
+      <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">☰</button>
+
+    </div>
+
+
+
+    <div class="shell nav-mobile-menu" id="navMobileMenu">
+
+      <a href="#home" class="nav-link">Home</a>
+
+      <a href="shop.html" class="nav-link">Shop</a>
+
+      <a href="#ventures" class="nav-link">Ventures</a>
+
+      <a href="#makes" class="nav-link">Makes</a>
+
+      <a href="#services" class="nav-link">Services</a>
+
+      <a href="#journal" class="nav-link">Journal</a>
+
+      <a href="#about" class="nav-link">About</a>
+
+      <a href="#contact" class="nav-link">Contact</a>
+
+      <button class="btn btn-outline" onclick="scrollToSection('contact')">
+
+        Talk about a project
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- Hero -->
+
+    <section id="home" class="hero">
+
+      <div class="shell-wide hero-inner">
+
+        <div>
+
+          <div class="hero-badge-row">
+
+            <div class="hero-tagline-pill">
+
+              <span class="icon">⚙️</span>
+
+              <span>MixedMakerShop.com</span>
+
+            </div>
+
+            <div class="hero-tagline-pill">
+
+              <span class="icon">🧠</span>
+
+              <span>Henry AI • StrainSpotter • GoneFishin Keychains</span>
+
+            </div>
+
+          </div>
+
+
+
+          <h1 class="hero-title">
+
+            Turning <span class="accent">ideas</span> into things<br />
+
+            you can hold, use and ship.
+
+          </h1>
+
+
+
+          <p class="hero-sub">
+
+            MixedMakerShop is my tiny, always-experimenting studio. I use 3D printing, code, and
+
+            small-business thinking to build ventures like Henry AI, StrainSpotter.app, and
+
+            GoneFishin Keychains.
+
+          </p>
+
+
+
+          <div class="hero-cta-row">
+
+            <button class="btn" onclick="scrollToSection('ventures')">
+
+              Explore ventures
+
+              <span class="btn-icon">↗</span>
+
+            </button>
+
+            <button class="btn btn-outline" onclick="scrollToSection('makes')">
+
+              See what I make
+
+            </button>
+
+          </div>
+
+
+
+          <div class="hero-footnote">
+
+            <strong>MixedMakerShop is the umbrella.</strong> Under it live digital tools,
+
+            physical products, and experiments that might become the next tiny business.
+
+          </div>
+
+        </div>
+
+
+
+        <div class="hero-media">
+
+          <div class="hero-banner">
+
+            <!-- Use your real banner image -->
+
+            <img src="banner.svg" alt="MixedMakerShop banner" />
+
+          </div>
+
+
+
+          <div class="hero-stack">
+
+            <div class="hero-card-small">
+
+              <div class="hero-card-small-icon">🧩</div>
+
+              <div>
+
+                <div class="hero-card-small-label">Core venture</div>
+
+                <div class="hero-card-small-main">Henry AI</div>
+
+              </div>
+
+            </div>
+
+            <div class="hero-card-small">
+
+              <div class="hero-card-small-icon">🎣</div>
+
+              <div>
+
+                <div class="hero-card-small-label">Physical line</div>
+
+                <div class="hero-card-small-main">GoneFishin Keychains</div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Ventures -->
+
+    <section id="ventures">
+
+      <div class="shell section-panel">
+
+        <div class="section-heading-row">
+
+          <div>
+
+            <div class="kicker">Ventures by MixedMakerShop</div>
+
+            <h2 class="section-title">The businesses that grew out of the workshop</h2>
+
+            <p class="section-sub">
+
+              MixedMakerShop is where everything starts. Some ideas stay as one-off projects;
+
+              a few become their own named venture with a clear audience and purpose.
+
+            </p>
+
+          </div>
+
+          <div>
+
+            <button class="btn btn-outline" onclick="scrollToSection('journal')">
+
+              Read how they're built
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="ventures-grid">
+
+          <!-- Henry AI -->
+
+          <article class="venture-card">
+
+            <div>
+
+              <div class="venture-label-row">
+
+                <div class="venture-name">Henry AI</div>
+
+                <div class="badge">Active • Software</div>
+
+              </div>
+
+              <p class="venture-desc">
+
+                A playground for building tools, workflows, and products at the intersection of
+
+                code and creativity. Henry AI is where I build and test reasoning tools and helpers.
+
+              </p>
+
+            </div>
+
+            <div class="venture-meta">
+
+              <span>Focus: automation, reasoning, and creative tooling</span>
+
+              <a href="#henry-ai" class="venture-link" onclick="event.preventDefault(); scrollToSection('contact');">
+
+                Learn more about Henry AI
+
+                <span>↗</span>
+
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- StrainSpotter.app -->
+
+          <article class="venture-card">
+
+            <div>
+
+              <div class="venture-label-row">
+
+                <div class="venture-name">StrainSpotter.app</div>
+
+                <div class="badge">Active • iOS app</div>
+
+              </div>
+
+              <p class="venture-desc">
+
+                A private strain journal and scan-based tracker. Log sessions, scan jars and packaging,
+
+                track effects, and spot patterns over time—without ads, accounts, or selling your data.
+
+              </p>
+
+            </div>
+
+            <div class="venture-meta">
+
+              <span>Focus: strain logging, session history, and real-world relief patterns</span>
+
+              <button class="venture-link"
+
+                onclick="window.open('https://strainspotter.app','_blank')">
+
+                Visit StrainSpotter.app
+
+                <span>↗</span>
+
+              </button>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- GoneFishin Keychains -->
+
+          <article class="venture-card">
+
+            <div>
+
+              <div class="venture-label-row">
+
+                <div class="venture-name">GoneFishin Keychains</div>
+
+                <div class="badge">Active • Physical</div>
+
+              </div>
+
+              <p class="venture-desc">
+
+                A line of vintage and new fishing lure keychains. A little tackle-box nostalgia
+
+                you can carry every day—built from found lures and new creations.
+
+              </p>
+
+            </div>
+
+            <div class="venture-meta">
+
+              <span>Focus: fishing culture & everyday carry</span>
+
+              <a href="https://gonefishinkeychains.com" target="_blank" class="venture-link">
+
+                Visit Website →
+
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Makes / Products -->
+
+    <section id="makes">
+
+      <div class="shell section-panel">
+
+        <div class="section-heading-row">
+
+          <div>
+
+            <div class="kicker">What I make</div>
+
+            <h2 class="section-title">3D prints, keychains, and tiny problem-solvers</h2>
+
+            <p class="section-sub">
+
+              At the center of MixedMakerShop is a 3D printer and a workbench. Apps and
+
+              businesses are built on top of that same habit: take a real problem and make
+
+              something that fits in a hand or on a screen.
+
+            </p>
+
+          </div>
+
+          <div>
+
+            <span class="pill">
+
+              <span class="pill-dot"></span>
+
+              New projects drop in here over time
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="makes-layout">
+
+          <div class="makes-grid">
+
+            <article class="make-card">
+
+              <img src="images/products/keychain-vintage.jpg" alt="Vintage fishing lure keychain" class="make-image" onerror="this.style.display='none'" />
+
+              <div class="make-content">
+
+                <h3 class="make-title">Vintage fishing lure keychains</h3>
+
+                <p style="font-size:0.8rem;color:rgba(243,233,217,0.8);">
+
+                  Real vintage and new lures turned into daily carry keychains. Each piece keeps
+
+                  the character of the original tackle but becomes something you'll actually use.
+
+                </p>
+
+                <div class="make-meta-row">
+
+                  <span class="tag">GoneFishin line</span>
+
+                  <span class="tag">Hand-assembled</span>
+
+                  <span class="tag">Everyday carry</span>
+
+                </div>
+
+              </div>
+
+            </article>
+
+
+
+            <article class="make-card">
+
+              <img src="images/products/fidget.jpg" alt="3D printed fidget" class="make-image" onerror="this.style.display='none'" />
+
+              <div class="make-content">
+
+                <h3 class="make-title">Desk-friendly 3D printed fidgets</h3>
+
+                <p style="font-size:0.8rem;color:rgba(243,233,217,0.8);">
+
+                  Compact fidgets tuned for one-hand spins and flips during calls. Low-noise but
+
+                  high feel, designed to live next to your keyboard.
+
+                </p>
+
+                <div class="make-meta-row">
+
+                  <span class="tag">PLA</span>
+
+                  <span class="tag">0.4mm layers</span>
+
+                  <span class="tag">No supports</span>
+
+                </div>
+
+              </div>
+
+            </article>
+
+
+
+            <article class="make-card">
+
+              <img src="images/products/cable-anchors.jpg" alt="Cable anchors and desk organizers" class="make-image" onerror="this.style.display='none'" />
+
+              <div class="make-content">
+
+                <h3 class="make-title">Cable anchors & desk organizers</h3>
+
+                <p style="font-size:0.8rem;color:rgba(243,233,217,0.8);">
+
+                  Print-on-demand parts that keep USB-C cables, pens, and tools exactly where you
+
+                  expect them. Small geometry changes, big daily impact.
+
+                </p>
+
+                <div class="make-meta-row">
+
+                <span class="tag">Functional prints</span>
+
+                <span class="tag">Custom sizing</span>
+
+              </div>
+
+              </div>
+
+            </article>
+
+
+
+            <article class="make-card">
+
+              <img src="images/products/custom-parts.jpg" alt="Custom 3D printed parts" class="make-image" onerror="this.style.display='none'" />
+
+              <div class="make-content">
+
+                <h3 class="make-title">"Why does this not exist?" parts</h3>
+
+                <p style="font-size:0.8rem;color:rgba(243,233,217,0.8);">
+
+                  Tiny adapters, spacers, and clips that solve oddly specific problems. Most of
+
+                them start as a sketch, then become a shareable STL.
+
+              </p>
+
+              <div class="make-meta-row">
+
+                <span class="tag">Quick builds</span>
+
+                <span class="tag">Problem-first</span>
+
+              </div>
+
+              </div>
+
+            </article>
+
+          </div>
+
+
+
+          <aside class="makes-info-card">
+
+            <div style="font-weight:600;font-size:1rem;margin-bottom:1rem;color:var(--mms-orange);">Ordering & Process</div>
+
+            <div style="display:grid;gap:1rem;font-size:0.85rem;">
+
+              <div>
+
+                <div style="font-weight:600;margin-bottom:0.4rem;color:rgba(243,233,217,0.95);">Shop Products</div>
+
+                <p style="color:rgba(243,233,217,0.8);margin-bottom:0.75rem;line-height:1.5;">
+
+                  Browse available items in the shop—keychains, 3D prints, and ready-to-ship products.
+
+                </p>
+
+                <a href="shop.html" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;width:100%;text-align:center;display:block;margin-bottom:0.5rem;">Visit Shop →</a>
+
+              </div>
+
+              <div style="border-top:1px solid rgba(243,233,217,0.15);padding-top:1rem;">
+
+                <div style="font-weight:600;margin-bottom:0.4rem;color:rgba(243,233,217,0.95);">Custom Requests</div>
+
+                <p style="color:rgba(243,233,217,0.8);margin-bottom:0.75rem;line-height:1.5;">
+
+                  Need something custom? Send a message with your idea and we'll discuss materials, timeline, and pricing.
+
+                </p>
+
+                <button onclick="scrollToSection('contact')" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;width:100%;text-align:center;display:block;">Start a Project →</button>
+
+              </div>
+
+              <div style="border-top:1px solid rgba(243,233,217,0.15);padding-top:1rem;">
+
+                <div style="font-weight:600;margin-bottom:0.4rem;color:rgba(243,233,217,0.95);">Materials & Quality</div>
+
+                <ul style="list-style:none;padding:0;color:rgba(243,233,217,0.8);line-height:1.8;font-size:0.82rem;">
+
+                  <li>✓ PLA filament</li>
+
+                  <li>✓ 0.4mm layer resolution</li>
+
+                  <li>✓ Hand-finished details</li>
+
+                  <li>✓ Quality tested before shipping</li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Services -->
+
+    <section id="services">
+
+      <div class="shell section-panel">
+
+        <div class="section-heading-row">
+
+          <div>
+
+            <div class="kicker">Services</div>
+
+            <h2 class="section-title">Ways people can work with MixedMakerShop</h2>
+
+            <p class="section-sub">
+
+              Beyond my own ventures, I help people get their ideas into the world with custom
+
+              3D printing, design help, and turning ideas into real products.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="services-grid">
+
+          <article class="service-card">
+
+            <h3 class="service-title">Custom 3D printing</h3>
+
+            <p>
+
+              Send a model, share an idea, or point at a problem. I'll help you turn it into a
+
+              printable object and a physical thing that works in your real world.
+
+            </p>
+
+            <ul class="service-list">
+
+              <li>Print from your STL or model</li>
+
+              <li>Material + color recommendations</li>
+
+              <li>Iteration on fit & function</li>
+
+            </ul>
+
+            <p class="service-meta">
+
+              Ideal for: small batches, test versions, gifts, and "I just need one of these" parts.
+
+            </p>
+
+          </article>
+
+
+
+          <article class="service-card">
+
+            <h3 class="service-title">Designing fixes, fidgets & keychains</h3>
+
+            <p>
+
+              When something doesn't exist yet—especially tiny helpers, fidgets, or keychains—I
+
+              design and build it from scratch.
+
+            </p>
+
+            <ul class="service-list">
+
+              <li>Problem-first design</li>
+
+              <li>Parametric CAD models</li>
+
+              <li>Optimized for FDM printing</li>
+
+            </ul>
+
+            <p class="service-meta">
+
+              Ideal for: branded keychains, fishing-themed gifts, organizers, and tactile
+
+              objects.
+
+            </p>
+
+          </article>
+
+
+
+          <article class="service-card">
+
+            <h3 class="service-title">Turning ideas into products</h3>
+
+            <p>
+
+              Some ideas want to be more than a single object or script. I help build the first
+
+              version and think about it as a focused tiny business, like Henry AI or
+
+              StrainSpotter.app.
+
+            </p>
+
+            <ul class="service-list">
+
+              <li>Concept → first version → ready to launch</li>
+
+              <li>Lightweight branding & naming</li>
+
+              <li>Simple landing pages & flows</li>
+
+            </ul>
+
+            <p class="service-meta">
+
+              Ideal for: tools, apps, and product lines that might grow into their own venture.
+
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Journal -->
+
+    <section id="journal">
+
+      <div class="shell section-panel">
+
+        <div class="section-heading-row">
+
+          <div>
+
+            <div class="kicker">Journal</div>
+
+            <h2 class="section-title">Behind the prints, apps & keychains</h2>
+
+            <p class="section-sub">
+
+              This is the devlog: 3D printing notes, Henry AI and StrainSpotter experiments, and
+
+              how GoneFishin Keychains went from a fun idea to a real product line.
+
+            </p>
+
+          </div>
+
+          <div>
+
+            <a href="#journal" class="btn btn-outline" onclick="event.preventDefault(); scrollToSection('journal');">
+
+              View Journal Posts
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="journal-grid">
+
+          <article class="journal-card">
+
+            <div class="journal-tag-row">
+
+              <span class="tag">Henry AI</span>
+
+              <span>Studio notes</span>
+
+            </div>
+
+            <h3 class="journal-title">Designing digital tools like physical objects</h3>
+
+            <p>
+
+              I treat Henry AI tools the way I treat prints: they start as a specific problem,
+
+              go through a rough first draft, then get sanded down until they feel satisfying to
+
+              use every day.
+
+            </p>
+
+            <p class="journal-footer">
+
+              Coming soon: Full article on designing tools that feel as satisfying as physical objects.
+
+            </p>
+
+          </article>
+
+
+
+          <article class="journal-card">
+
+            <div class="journal-tag-row">
+
+              <span class="tag">StrainSpotter &amp; GoneFishin</span>
+
+              <span>Build log</span>
+
+            </div>
+
+            <h3 class="journal-title">From one-off ideas to named ventures</h3>
+
+            <p>
+
+              StrainSpotter.app and GoneFishin Keychains both started as personal projects. The
+
+              turning point was realizing they deserved their own names, audiences, and workflows
+
+              instead of staying in a "misc experiments" folder.
+
+            </p>
+
+            <p class="journal-footer">
+
+              More build logs and behind-the-scenes stories coming soon to this journal section.
+
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- About -->
+
+    <section id="about">
+
+      <div class="shell section-panel">
+
+        <div class="section-heading-row">
+
+          <div>
+
+            <div class="kicker">About</div>
+
+            <h2 class="section-title">What MixedMakerShop actually is</h2>
+
+            <p class="section-sub">
+
+              It's not just a shop. It's the umbrella for everything I'm building: 3D printed
+
+              objects, Henry AI, StrainSpotter.app, GoneFishin Keychains, and whatever comes
+
+              next.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="about-layout">
+
+          <div>
+
+            <p style="font-size:0.9rem;margin-bottom:0.9rem;">
+
+              MixedMakerShop started as a place to put all the projects that didn't fit
+
+              anywhere else: a useful print here, a clever script there, a keychain idea that
+
+              felt too fun to ignore. Over time, patterns showed up—some of those projects
+
+              wanted to be real products or tools.
+
+            </p>
+
+            <p style="font-size:0.9rem;margin-bottom:0.9rem;">
+
+              Instead of scattering them across random sites, MixedMakerShop is the studio and umbrella. When a project wants to become a venture—like Henry AI,
+
+              StrainSpotter.app, or GoneFishin Keychains—it still lives under this roof. That
+
+              keeps everything connected: the 3D printing, the code, the physical and digital
+
+              systems.
+
+            </p>
+
+            <p style="font-size:0.9rem;margin-bottom:0.9rem;">
+
+              This is where everything starts. Some ideas stay as one-off projects; a few become their own named venture with a clear audience and purpose.
+
+            </p>
+
+            <p style="font-size:0.9rem;">
+
+              Visit mixedmakershop.com to see the whole picture: what we're making, why we're making it,
+
+              and how small experiments turn into things you can actually hold, use, or build a
+
+              business around.
+
+            </p>
+
+          </div>
+
+
+
+          <aside>
+
+            <div class="timeline">
+
+              <div class="timeline-item">
+
+                <div class="timeline-year">Origin</div>
+
+                <div class="timeline-title">First useful prints & fixes</div>
+
+                <div>
+
+                  It starts with small annoyances: messy cables, tools with no home, things that
+
+                  don't quite fit. 3D printing becomes a way to quietly patch the world.
+
+                </div>
+
+              </div>
+
+              <div class="timeline-item">
+
+                <div class="timeline-year">Branching out</div>
+
+                <div class="timeline-title">Ideas become named ventures</div>
+
+                <div>
+
+                  Henry AI and StrainSpotter.app emerge as focused tools. GoneFishin Keychains
+
+                  turns a love of lures into something people can carry every day.
+
+                </div>
+
+              </div>
+
+              <div class="timeline-item">
+
+                <div class="timeline-year">Now</div>
+
+                <div class="timeline-title">MixedMakerShop as the hub</div>
+
+                <div>
+
+                  MixedMakerShop.com becomes the home base: one brand that can hold apps,
+
+                  prints, keychains, and whatever the next experiment grows into.
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Contact -->
+
+    <section id="contact">
+
+      <div class="shell section-panel">
+
+        <div class="section-heading-row">
+
+          <div>
+
+            <div class="kicker">Contact</div>
+
+            <h2 class="section-title">Start a project, ask a question, pitch an idea</h2>
+
+            <p class="section-sub">
+
+              Whether you want a single print, a batch of keychains, or you're curious about
+
+              Henry AI and StrainSpotter.app, this is the easiest way to reach MixedMakerShop.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="contact-layout">
+
+          <form
+
+            name="contact"
+
+            method="POST"
+
+            data-netlify="true"
+
+            data-netlify-honeypot="bot-field"
+
+            class="contact-form"
+
+            netlify
+
+          >
+
+            <!-- Honeypot field for spam protection -->
+            <input type="hidden" name="form-name" value="contact" />
+            <p style="display: none;">
+              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+
+            <div class="field-group">
+
+              <label for="name">Name *</label>
+
+              <input id="name" name="name" type="text" placeholder="How should I address you?" required />
+
+            </div>
+
+
+
+            <div class="field-group">
+
+              <label for="email">Email *</label>
+
+              <input
+
+                id="email"
+
+                name="email"
+
+                type="email"
+
+                placeholder="Where can I reply?"
+
+                required
+
+              />
+
+            </div>
+
+
+
+            <div class="field-group">
+
+              <label for="topic">What is this about?</label>
+
+              <select id="topic" name="topic">
+
+                <option value="">Choose one…</option>
+
+                <option value="print">A custom 3D print</option>
+
+                <option value="design">Designing a fix, fidget, or keychain</option>
+
+                <option value="venture">A potential venture / product</option>
+
+                <option value="henry">Henry AI</option>
+
+                <option value="strainspotter">StrainSpotter.app</option>
+
+                <option value="other">Something else entirely</option>
+
+              </select>
+
+            </div>
+
+
+
+            <div class="field-group">
+
+              <label for="message">Tell me more</label>
+
+              <textarea
+
+                id="message"
+
+                name="message"
+
+                placeholder="What are you trying to make, fix, or explore?"
+
+                required
+
+              ></textarea>
+
+            </div>
+
+
+
+            <div class="field-group">
+
+              <button class="btn" type="submit">
+
+                Send this to MixedMakerShop
+
+                <span class="btn-icon">➜</span>
+
+              </button>
+
+              <div id="form-message" class="form-message" style="display:none;"></div>
+
+              <p class="contact-note" id="form-note">
+
+                Submit this form and you'll receive a confirmation. We'll get back to you via email.
+
+              </p>
+
+            </div>
+
+          </form>
+
+
+
+          <aside class="contact-meta-cards">
+
+            <div class="contact-card">
+
+              <h4>Connect & Explore</h4>
+
+              <p>
+
+                Check out the ventures, shop for products, or explore what we make. All links below open in new tabs.
+
+              </p>
+
+              <div class="contact-links">
+
+                <span class="contact-link-pill" onclick="window.open('https://strainspotter.app','_blank');">
+
+                  StrainSpotter.app
+
+                </span>
+
+                <a href="https://gonefishinkeychains.com" target="_blank" class="contact-link-pill" style="text-decoration:none;display:inline-block;">GoneFishin Keychains</a>
+
+                <a href="shop.html" class="contact-link-pill" style="text-decoration:none;display:inline-block;">Shop</a>
+
+                <a href="#makes" class="contact-link-pill" onclick="event.preventDefault(); scrollToSection('makes');" style="text-decoration:none;display:inline-block;cursor:pointer;">3D Prints & Makes</a>
+
+              </div>
+
+            </div>
+
+            <div class="contact-card">
+
+              <h4>How I like to work</h4>
+
+              <p>
+
+                Clear problems, scrappy experiments, and quick feedback loops. Small projects
+
+                are welcome, and weird ideas are encouraged.
+
+              </p>
+
+              <p style="margin-top:0.4rem;">
+
+                You don't need perfect specs. A rough idea is enough—we can shape it into
+
+                something printable, sellable, or shippable together.
+
+              </p>
+
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer>
+
+    <div class="shell footer-row">
+
+      <span>
+
+        <strong>MixedMakerShop</strong> – From ideas to things you can hold, from Henry AI and
+
+        StrainSpotter.app to GoneFishin Keychains and beyond.
+
+      </span>
+
+      <div class="footer-links">
+
+        <a href="#home">Top</a>
+
+        <span>•</span>
+
+        <a href="#ventures">Ventures</a>
+
+        <span>•</span>
+
+        <a href="#makes">Makes</a>
+
+        <span>•</span>
+
+        <a href="#contact">Contact</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <script>
+
+    // Smooth scroll helper
+
+    function scrollToSection(id) {
+
+      const target = document.getElementById(id);
+
+      if (!target) return;
+
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
+
+      window.scrollTo({ top, behavior: "smooth" });
+
+    }
+
+
+
+    // Wire up nav links to smooth scroll
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+
+      link.addEventListener("click", (e) => {
+
+        const href = link.getAttribute("href");
+
+        if (!href || href === "#") return;
+
+        const id = href.slice(1);
+
+        const target = document.getElementById(id);
+
+        if (target) {
+
+          e.preventDefault();
+
+          scrollToSection(id);
+
+        }
+
+      });
+
+    });
+
+
+
+    // Active nav highlighting on scroll
+
+    const navLinks = Array.from(document.querySelectorAll("header .nav-link"));
+
+    const sections = navLinks
+
+      .filter((link) => {
+        const href = link.getAttribute("href");
+        return href && href.startsWith("#") && href !== "#";
+      })
+
+      .map((link) => {
+        const href = link.getAttribute("href");
+        return document.querySelector(href);
+      })
+
+      .filter(Boolean);
+
+
+
+    function updateActiveNav() {
+
+      const scrollPos = window.scrollY + 120;
+
+      let activeId = "home";
+
+      sections.forEach((sec) => {
+
+        if (scrollPos >= sec.offsetTop) {
+
+          activeId = sec.id;
+
+        }
+
+      });
+
+      navLinks.forEach((link) => {
+
+        const href = link.getAttribute("href");
+
+        if (href && href.startsWith("#") && href !== "#") {
+
+          const id = href.slice(1);
+
+          link.classList.toggle("active", id === activeId);
+
+        } else if (href === "#home" || href === "index.html" || (href === "#" && activeId === "home")) {
+
+          link.classList.toggle("active", activeId === "home");
+
+        }
+
+      });
+
+    }
+
+
+
+    window.addEventListener("scroll", () => {
+
+      window.requestAnimationFrame(updateActiveNav);
+
+    });
+
+    updateActiveNav();
+
+
+
+    // Mobile nav toggle
+
+    const navToggle = document.getElementById("navToggle");
+
+    const navMobileMenu = document.getElementById("navMobileMenu");
+
+    navToggle.addEventListener("click", () => {
+
+      const isOpen = navMobileMenu.style.display === "flex";
+
+      navMobileMenu.style.display = isOpen ? "none" : "flex";
+
+    });
+
+
+
+    // Close mobile menu on navigation
+
+    navMobileMenu.querySelectorAll(".nav-link").forEach((link) => {
+
+      link.addEventListener("click", () => {
+
+        navMobileMenu.style.display = "none";
+
+      });
+
+    });
+
+    // Netlify Form Submission Handler
+
+    const form = document.querySelector('form[name="contact"]');
+
+    const formMessage = document.getElementById('form-message');
+
+    const formNote = document.getElementById('form-note');
+
+    if (form) {
+
+      form.addEventListener('submit', async (e) => {
+
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        const originalButtonText = submitButton.innerHTML;
+
+        // Hide previous messages and note
+
+        formMessage.style.display = 'none';
+
+        if (formNote) formNote.style.display = 'none';
+
+        // Show loading state
+
+        submitButton.disabled = true;
+
+        submitButton.innerHTML = '<span>Sending message...</span> <span class="btn-icon">⏳</span>';
+
+        submitButton.style.opacity = '0.7';
+
+        try {
+
+          // Encode form data properly for Netlify
+
+          const formDataEncoded = new URLSearchParams();
+
+          for (const [key, value] of formData.entries()) {
+
+            formDataEncoded.append(key, value);
+
+          }
+
+          const response = await fetch('/', {
+
+            method: 'POST',
+
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+
+            body: formDataEncoded.toString()
+
+          });
+
+          if (response.ok) {
+
+            // Success!
+
+            formMessage.className = 'form-message success';
+
+            formMessage.innerHTML = '<span class="form-message-icon">✓</span><div><strong>Message sent successfully!</strong><br />Thanks for reaching out. We\'ll get back to you via email soon.</div>';
+
+            formMessage.style.display = 'flex';
+
+            form.reset();
+
+            // Scroll to message smoothly
+
+            setTimeout(() => {
+
+              formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            }, 100);
+
+            // Hide the note permanently after success
+
+            if (formNote) formNote.style.display = 'none';
+
+          } else {
+
+            throw new Error(`Form submission failed: ${response.status}`);
+
+          }
+
+        } catch (error) {
+
+          console.error('Form submission error:', error);
+
+          // Show error message
+
+          formMessage.className = 'form-message error';
+
+          formMessage.innerHTML = '<span class="form-message-icon">✗</span><div><strong>Oops! Something went wrong.</strong><br />Please try again, or reach out directly if the problem persists.</div>';
+
+          formMessage.style.display = 'flex';
+
+          // Show the note again
+
+          if (formNote) formNote.style.display = 'block';
+
+          // Scroll to error message
+
+          setTimeout(() => {
+
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          }, 100);
+
+        } finally {
+
+          // Reset button
+
+        submitButton.disabled = false;
+
+        submitButton.innerHTML = originalButtonText;
+
+        submitButton.style.opacity = '1';
+
+          submitButton.style.opacity = '1';
+
+        }
+
+      });
+
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout – MixedMakerShop</title>
+  <meta name="description" content="Complete your purchase from MixedMakerShop" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="m3-logo.svg" />
+  <link rel="apple-touch-icon" href="m3-logo.svg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --mms-green-dark: #0b2f20;
+      --mms-green: #10412a;
+      --mms-orange: #f49b1a;
+      --mms-cream: #f3e9d9;
+      --mms-cream-deep: #e6d4be;
+      --mms-ink: #101418;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.28);
+      --shadow-subtle: 0 10px 25px rgba(0, 0, 0, 0.18);
+      --transition-fast: 0.16s ease-out;
+      --transition-med: 0.24s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #184c31 0, #061710 45%, #020905 100%);
+      color: var(--mms-cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1200px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    /* Header */
+    header {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+    }
+
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Header Styles */
+    @media (max-width: 640px) {
+      header {
+        padding: 0.75rem 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .nav {
+        gap: 0.5rem;
+      }
+
+      .nav-left {
+        gap: 0.5rem;
+      }
+
+      .logo-mark {
+        width: 28px;
+        height: 28px;
+      }
+
+      .logo-text-main {
+        font-size: 0.8rem;
+      }
+
+      .logo-text-sub {
+        font-size: 0.65rem;
+      }
+
+      .btn-outline {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Layout */
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 968px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Form Styles */
+    .form-section {
+      background: linear-gradient(135deg, rgba(8, 39, 23, 0.94), rgba(3, 16, 10, 0.98));
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid rgba(243, 233, 217, 0.12);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+    }
+
+    .field-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: rgba(243, 233, 217, 0.9);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(243, 233, 217, 0.3);
+      background: rgba(3, 11, 7, 0.94);
+      color: var(--mms-cream);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--mms-orange);
+      box-shadow: 0 0 0 2px rgba(244, 155, 26, 0.2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Order Summary */
+    .order-summary {
+      background: linear-gradient(135deg, rgba(8, 39, 23, 0.94), rgba(3, 16, 10, 0.98));
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid rgba(243, 233, 217, 0.12);
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+    }
+
+    .summary-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+    }
+
+    .summary-items {
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+    }
+
+    .summary-item-name {
+      flex-grow: 1;
+      margin-right: 1rem;
+    }
+
+    .summary-item-price {
+      color: var(--mms-orange);
+      font-weight: 600;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .summary-row.total {
+      border-top: 2px solid rgba(244, 155, 26, 0.3);
+      margin-top: 1rem;
+      padding-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .summary-row.total .summary-value {
+      color: var(--mms-orange);
+      font-size: 1.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-med);
+      background: linear-gradient(135deg, var(--mms-orange) 0%, #f7a531 100%);
+      color: #1b0c00;
+      box-shadow: 0 8px 24px rgba(244, 155, 26, 0.4);
+      width: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(244, 155, 26, 0.6);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(243, 233, 217, 0.35);
+      color: var(--mms-cream);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(243, 233, 217, 0.06);
+      border-color: rgba(243, 233, 217, 0.6);
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 3rem 0;
+      color: rgba(243, 233, 217, 0.6);
+    }
+
+    .order-info-box {
+      font-size: 0.9rem;
+      color: rgba(243, 233, 217, 0.9);
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(244, 155, 26, 0.12), rgba(244, 155, 26, 0.08));
+      border: 1px solid rgba(244, 155, 26, 0.25);
+      border-radius: var(--radius-md);
+      line-height: 1.7;
+    }
+
+    .order-info-box h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--mms-orange);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .order-info-box p {
+      margin-bottom: 0.75rem;
+    }
+
+    .order-info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .order-info-box ul {
+      margin: 0.75rem 0;
+      padding-left: 1.5rem;
+      list-style: none;
+    }
+
+    .order-info-box li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+    }
+
+    .order-info-box li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--mms-orange);
+      font-weight: 600;
+    }
+
+    .form-message {
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-md);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    .form-message.success {
+      background: linear-gradient(135deg, rgba(63, 212, 123, 0.2), rgba(46, 160, 93, 0.2));
+      border: 1px solid rgba(63, 212, 123, 0.5);
+      color: rgba(232, 250, 241, 0.98);
+    }
+
+    .form-message.error {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: rgba(254, 226, 226, 0.98);
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="m3-logo.svg" alt="MixedMakerShop" class="logo-mark" />
+        </a>
+        <div>
+          <div class="logo-text-main">MixedMakerShop</div>
+          <div class="logo-text-sub" style="font-size: 0.75rem; color: rgba(243, 233, 217, 0.7);">Checkout</div>
+        </div>
+      </div>
+      <a href="shop.html" class="btn-outline" style="padding: 0.6rem 1.4rem; border-radius: var(--radius-pill);">← Back to Shop</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <div class="checkout-layout">
+        <!-- Checkout Form -->
+        <div>
+          <form 
+            id="checkoutForm" 
+            name="checkout"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onsubmit="handleCheckout(event)"
+            netlify
+          >
+            <!-- Honeypot field for spam protection -->
+            <input type="hidden" name="form-name" value="checkout" />
+            <input type="hidden" name="bot-field" style="display: none;" />
+            <!-- Shipping Information -->
+            <div class="form-section">
+              <h2 class="form-title">Shipping Information</h2>
+              <div class="field-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="field-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="field-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+              <div class="field-group">
+                <label for="address">Street Address *</label>
+                <input type="text" id="address" name="address" required />
+              </div>
+              <div class="form-row">
+                <div class="field-group">
+                  <label for="city">City *</label>
+                  <input type="text" id="city" name="city" required />
+                </div>
+                <div class="field-group">
+                  <label for="state">State *</label>
+                  <input type="text" id="state" name="state" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field-group">
+                  <label for="zip">ZIP Code *</label>
+                  <input type="text" id="zip" name="zip" required />
+                </div>
+                <div class="field-group">
+                  <label for="country">Country *</label>
+                  <select id="country" name="country" required>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Information -->
+            <div class="form-section">
+              <h2 class="form-title">What Happens Next</h2>
+              <div class="order-info-box">
+                <h3>📧 Simple & Personal</h3>
+                <p>
+                  Once you submit your order, I'll receive an email with all your details and what you'd like to purchase. 
+                  I'll reach out within 24 hours to confirm your order and arrange payment.
+                </p>
+                <p>
+                  <strong>Payment options:</strong>
+                </p>
+                <ul>
+                  <li>Cash App</li>
+                  <li>Credit card (Stripe - coming soon)</li>
+                </ul>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: rgba(243, 233, 217, 0.8);">
+                  No payment is required now—we'll handle that together once I confirm your order details.
+                </p>
+              </div>
+              
+              <!-- Hidden fields for order data (will be populated before submission) -->
+              <input type="hidden" name="order-items" id="orderItemsData" />
+              <input type="hidden" name="order-subtotal" id="orderSubtotalData" />
+              <input type="hidden" name="order-shipping" id="orderShippingData" />
+              <input type="hidden" name="order-total" id="orderTotalData" />
+            </div>
+
+            <!-- Order Notes -->
+            <div class="form-section">
+              <h2 class="form-title">Order Notes (Optional)</h2>
+              <div class="field-group">
+                <label for="notes">Special Instructions or Requests</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="Any special requests, customizations, or notes for your order..."></textarea>
+              </div>
+            </div>
+            
+            <div id="form-message" class="form-message" style="display:none;"></div>
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <h2 class="summary-title">Order Summary</h2>
+          <div class="summary-items" id="orderItems">
+            <!-- Items will be loaded here -->
+          </div>
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span class="summary-item-price" id="subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping:</span>
+            <span class="summary-item-price" id="shipping">$5.00</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span class="summary-value" id="total">$0.00</span>
+          </div>
+          <button class="btn" type="submit" form="checkoutForm" id="submitOrderBtn">
+            Submit Order Request
+          </button>
+          <p style="text-align: center; font-size: 0.85rem; color: rgba(243, 233, 217, 0.7); margin-top: 1rem;">
+            You'll hear from us soon to finalize your order
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('mmsCart') || '[]');
+
+    function init() {
+      if (cart.length === 0) {
+        document.body.innerHTML = `
+          <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+            <div>
+              <h1 style="font-size: 2rem; margin-bottom: 1rem;">Your cart is empty</h1>
+              <p style="margin-bottom: 2rem; color: rgba(243, 233, 217, 0.7);">Add some items to your cart before checkout.</p>
+              <a href="shop.html" style="display: inline-block; padding: 1rem 2rem; background: var(--mms-orange); color: #1b0c00; border-radius: 999px; font-weight: 600; text-decoration: none;">Go to Shop</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      renderOrderSummary();
+      loadSavedInfo();
+    }
+
+    function renderOrderSummary() {
+      const container = document.getElementById('orderItems');
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const shipping = 5.00;
+      const total = subtotal + shipping;
+
+      container.innerHTML = cart.map(item => `
+        <div class="summary-item">
+          <div class="summary-item-name">
+            ${item.name} <span style="color: rgba(243, 233, 217, 0.6); font-size: 0.85rem;">× ${item.quantity}</span>
+          </div>
+          <div class="summary-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+      document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function loadSavedInfo() {
+      // Load saved info from localStorage if available
+      const savedInfo = JSON.parse(localStorage.getItem('mmsCheckoutInfo') || '{}');
+      if (savedInfo.name) document.getElementById('name').value = savedInfo.name;
+      if (savedInfo.email) document.getElementById('email').value = savedInfo.email;
+      if (savedInfo.phone) document.getElementById('phone').value = savedInfo.phone;
+      if (savedInfo.address) document.getElementById('address').value = savedInfo.address;
+      if (savedInfo.city) document.getElementById('city').value = savedInfo.city;
+      if (savedInfo.state) document.getElementById('state').value = savedInfo.state;
+      if (savedInfo.zip) document.getElementById('zip').value = savedInfo.zip;
+      if (savedInfo.country) document.getElementById('country').value = savedInfo.country;
+    }
+
+    async function handleCheckout(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formMessage = document.getElementById('form-message');
+      const submitButton = document.getElementById('submitOrderBtn');
+      const formData = new FormData(form);
+      
+      // Calculate order totals
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const shipping = 5.00;
+      const total = subtotal + shipping;
+      
+      // Format order items for email (human-readable)
+      const orderItemsText = cart.map(item => 
+        `• ${item.name} × ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
+      ).join('\n');
+      
+      // Populate hidden fields with order data
+      document.getElementById('orderItemsData').value = orderItemsText;
+      document.getElementById('orderSubtotalData').value = `$${subtotal.toFixed(2)}`;
+      document.getElementById('orderShippingData').value = `$${shipping.toFixed(2)}`;
+      document.getElementById('orderTotalData').value = `$${total.toFixed(2)}`;
+      
+      // Hide previous messages
+      formMessage.style.display = 'none';
+      
+      // Show loading state
+      const originalButtonText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Submitting Your Order...';
+      submitButton.style.opacity = '0.7';
+      
+      try {
+        // Create form data with all fields including hidden ones
+        const formDataToSend = new FormData(form);
+        formDataToSend.append('form-name', 'checkout');
+        
+        // Add formatted order summary
+        const orderSummary = `ORDER REQUEST SUMMARY\n\nItems:\n${orderItemsText}\n\nSubtotal: $${subtotal.toFixed(2)}\nShipping: $${shipping.toFixed(2)}\nTotal: $${total.toFixed(2)}\n\nDate: ${new Date().toLocaleString()}\n\n---\nThis is an order request. Please contact the customer to arrange payment.`;
+        formDataToSend.append('order-summary', orderSummary);
+        
+        // Encode for Netlify
+        const formDataEncoded = new URLSearchParams();
+        for (const [key, value] of formDataToSend.entries()) {
+          formDataEncoded.append(key, value);
+        }
+        
+        // Submit to Netlify
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formDataEncoded.toString()
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Form submission failed: ${response.status}`);
+        }
+        
+        // Success!
+        formMessage.className = 'form-message success';
+        formMessage.innerHTML = '✓ Order request submitted! I\'ll reach out to ' + formData.get('email') + ' within 24 hours to confirm your order and arrange payment.';
+        formMessage.style.display = 'flex';
+        
+        // Scroll to message
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Save checkout info for next time
+        const shippingInfo = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          address: formData.get('address'),
+          city: formData.get('city'),
+          state: formData.get('state'),
+          zip: formData.get('zip'),
+          country: formData.get('country')
+        };
+        localStorage.setItem('mmsCheckoutInfo', JSON.stringify(shippingInfo));
+        
+        // Clear cart after a short delay
+        setTimeout(() => {
+          localStorage.removeItem('mmsCart');
+          // Redirect to home after 4 seconds
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 4000);
+        }, 2000);
+        
+      } catch (error) {
+        console.error('Order submission error:', error);
+        
+        // Show error message
+        formMessage.className = 'form-message error';
+        formMessage.innerHTML = '✗ There was an error submitting your order. Please try again or contact us directly at the email on our contact page.';
+        formMessage.style.display = 'flex';
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Reset button
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+        submitButton.style.opacity = '1';
+      }
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

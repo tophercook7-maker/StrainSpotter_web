@@ -1,0 +1,19 @@
+{
+  "name": "mixedmakershop",
+  "version": "1.0.0",
+  "description": "MixedMakerShop e-commerce site with Stripe payment processing",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  },
+  "keywords": [
+    "e-commerce",
+    "stripe",
+    "netlify"
+  ],
+  "author": "",
+  "license": "ISC"
+}

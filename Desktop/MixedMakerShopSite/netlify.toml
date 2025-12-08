@@ -1,0 +1,21 @@
+# Netlify configuration for MixedMakerShop
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Netlify Forms configuration
+# Forms are automatically detected with data-netlify="true" attribute
+# After deployment, configure email notifications in Netlify dashboard:
+# Site Settings → Forms → Form Notifications
+
+# Forms on this site:
+# 1. "contact" - Contact form on index.html
+# 2. "checkout" - Order checkout form on checkout.html
+
+# Optional: Configure redirects if needed
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
+

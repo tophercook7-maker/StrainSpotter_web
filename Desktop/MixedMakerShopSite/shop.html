@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop – MixedMakerShop</title>
+  <meta name="description" content="Shop 3D printed items and GoneFishin Keychains from MixedMakerShop" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="m3-logo.svg" />
+  <link rel="apple-touch-icon" href="m3-logo.svg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --mms-green-dark: #0b2f20;
+      --mms-green: #10412a;
+      --mms-orange: #f49b1a;
+      --mms-cream: #f3e9d9;
+      --mms-cream-deep: #e6d4be;
+      --mms-ink: #101418;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.28);
+      --shadow-subtle: 0 10px 25px rgba(0, 0, 0, 0.18);
+      --transition-fast: 0.16s ease-out;
+      --transition-med: 0.24s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #184c31 0, #061710 45%, #020905 100%);
+      color: var(--mms-cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(3, 9, 5, 0.98), rgba(3, 9, 5, 0.92), rgba(3, 9, 5, 0.72));
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+      padding: 1rem 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+    }
+
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.75rem;
+      color: rgba(243, 233, 217, 0.7);
+    }
+
+    /* Mobile Header Styles */
+    @media (max-width: 640px) {
+      header {
+        padding: 0.75rem 0;
+      }
+
+      .nav {
+        gap: 0.5rem;
+      }
+
+      .nav-left {
+        gap: 0.5rem;
+      }
+
+      .logo-mark {
+        width: 28px;
+        height: 28px;
+      }
+
+      .logo-text-main {
+        font-size: 0.8rem;
+      }
+
+      .logo-text-sub {
+        font-size: 0.7rem;
+      }
+
+      .btn-cart {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition-med);
+      background: linear-gradient(135deg, var(--mms-orange) 0%, #f7a531 100%);
+      color: #1b0c00;
+      box-shadow: 0 8px 24px rgba(244, 155, 26, 0.4);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(244, 155, 26, 0.6);
+    }
+
+    .btn-cart {
+      position: relative;
+      background: transparent;
+      border: 1px solid rgba(243, 233, 217, 0.35);
+      color: var(--mms-cream);
+      box-shadow: none;
+    }
+
+    .btn-cart:hover {
+      background: rgba(243, 233, 217, 0.06);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--mms-orange);
+      color: #1b0c00;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem 0 4rem;
+      min-height: calc(100vh - 200px);
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      font-size: 1.1rem;
+      color: rgba(243, 233, 217, 0.8);
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(243, 233, 217, 0.3);
+      background: rgba(3, 16, 10, 0.6);
+      color: rgba(243, 233, 217, 0.8);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-size: 0.9rem;
+    }
+
+    .filter-tab:hover {
+      border-color: rgba(244, 155, 26, 0.6);
+      background: rgba(244, 155, 26, 0.1);
+    }
+
+    .filter-tab.active {
+      background: rgba(244, 155, 26, 0.2);
+      border-color: var(--mms-orange);
+      color: var(--mms-orange);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, rgba(8, 39, 23, 0.94), rgba(3, 16, 10, 0.98));
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 1px solid rgba(243, 233, 217, 0.12);
+      box-shadow: var(--shadow-subtle);
+      transition: all var(--transition-med);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(244, 155, 26, 0.3);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(243, 233, 217, 0.1) 0%, rgba(244, 155, 26, 0.1) 100%);
+      border: 2px dashed rgba(243, 233, 217, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(244, 155, 26, 0.2);
+      border: 1px solid rgba(244, 155, 26, 0.5);
+      color: var(--mms-orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+      color: rgba(243, 233, 217, 0.7);
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--mms-orange);
+    }
+
+    .btn-add-cart {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    /* Cart Modal */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .cart-modal.active {
+      display: flex;
+    }
+
+    .cart-content {
+      background: linear-gradient(135deg, rgba(8, 39, 23, 0.98), rgba(3, 16, 10, 0.98));
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 1px solid rgba(243, 233, 217, 0.2);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--mms-cream);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .cart-items {
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(243, 233, 217, 0.1);
+    }
+
+    .cart-item-image {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: rgba(243, 233, 217, 0.1);
+      flex-shrink: 0;
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .cart-item-price {
+      color: var(--mms-orange);
+      font-weight: 600;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quantity-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(243, 233, 217, 0.3);
+      background: transparent;
+      color: var(--mms-cream);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-btn:hover {
+      background: rgba(244, 155, 26, 0.2);
+      border-color: var(--mms-orange);
+    }
+
+    .cart-total {
+      border-top: 2px solid rgba(244, 155, 26, 0.3);
+      padding-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-total-label {
+      font-weight: 600;
+    }
+
+    .cart-total-amount {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--mms-orange);
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .cart-actions .btn {
+      flex: 1;
+    }
+
+    .btn-checkout {
+      width: 100%;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 3rem 0;
+      color: rgba(243, 233, 217, 0.6);
+    }
+
+    .empty-products {
+      text-align: center;
+      padding: 3rem 0;
+      color: rgba(243, 233, 217, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="m3-logo.svg" alt="MixedMakerShop" class="logo-mark" />
+        </a>
+        <div>
+          <div class="logo-text-main">MixedMakerShop</div>
+          <div class="logo-text-sub">Shop</div>
+        </div>
+      </div>
+      <button class="btn btn-cart" onclick="toggleCart()">
+        🛒 Cart
+        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <div class="page-header">
+        <h1 class="page-title">Shop MixedMakerShop</h1>
+        <p class="page-subtitle">3D printed items, keychains, and unique creations</p>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterProducts('all')">All Products</button>
+        <button class="filter-tab" onclick="filterProducts('keychains')">GoneFishin Keychains</button>
+        <button class="filter-tab" onclick="filterProducts('3dprints')">3D Printed Items</button>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be loaded here -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+      <div class="cart-header">
+        <h2 class="cart-title">Shopping Cart</h2>
+        <button class="btn-close" onclick="toggleCart()">×</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be loaded here -->
+      </div>
+      <div class="cart-total" id="cartTotal" style="display: none;">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Subtotal:</span>
+          <span class="cart-total-amount" id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-total-row">
+          <span class="cart-total-label">Shipping:</span>
+          <span class="cart-total-amount">$5.00</span>
+        </div>
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total:</span>
+          <span class="cart-total-amount" id="cartTotalAmount">$0.00</span>
+        </div>
+      </div>
+      <div class="cart-actions">
+        <button class="btn btn-checkout" onclick="goToCheckout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Product Database
+    const products = [
+      // Keychains
+      {
+        id: 'keychain-vintage-1',
+        name: 'Vintage Fishing Lure Keychain',
+        description: 'Handmade from retired or disabled-from-active-duty fishing lures. Each piece has a story and unique character.',
+        price: 18.99,
+        category: 'keychains',
+        image: 'images/products/keychain-vintage.jpg',
+        brand: 'GoneFishin'
+      },
+      {
+        id: 'keychain-regular-1',
+        name: 'Regular Lure Keychain',
+        description: 'Fresh keychain made from new fishing lures. High-quality materials and bright colors.',
+        price: 12.99,
+        category: 'keychains',
+        image: 'images/products/keychain-regular.jpg',
+        brand: 'GoneFishin'
+      },
+      {
+        id: 'keychain-3d-1',
+        name: '3D Printed Fishing Keychain',
+        description: 'Custom 3D printed fishing trip item. Unique designs based on your fishing adventures.',
+        price: 8.99,
+        category: 'keychains',
+        image: 'images/products/keychain-3d.jpg',
+        brand: 'GoneFishin'
+      },
+      // 3D Printed Items - Add your actual products here
+      {
+        id: 'fidget-1',
+        name: 'Desk-Friendly 3D Printed Fidget',
+        description: 'Compact fidgets tuned for one-hand spins and flips during calls. Low-noise but high feel.',
+        price: 12.00,
+        category: '3dprints',
+        image: 'images/products/fidget.jpg',
+        brand: 'MixedMakerShop'
+      },
+      {
+        id: 'cable-anchors-1',
+        name: 'Cable Anchors & Desk Organizers',
+        description: 'Print-on-demand parts that keep USB-C cables, pens, and tools exactly where you expect them.',
+        price: 8.00,
+        category: '3dprints',
+        image: 'images/products/cable-anchors.jpg',
+        brand: 'MixedMakerShop'
+      },
+      // Add more products as you create them...
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('mmsCart') || '[]');
+    let currentFilter = 'all';
+
+    // Initialize
+    function init() {
+      renderProducts();
+      updateCartBadge();
+    }
+
+    // Filter Products
+    function filterProducts(category) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      renderProducts();
+    }
+
+    // Render Products
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const filtered = currentFilter === 'all' 
+        ? products 
+        : products.filter(p => p.category === currentFilter);
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty-products">No products in this category yet. Check back soon!</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(product => `
+        <div class="product-card">
+          <div class="product-image">
+            ${product.image ? `<img src="${product.image}" alt="${product.name}" onerror="this.parentElement.innerHTML='🎣'" />` : '🎣'}
+          </div>
+          <span class="product-badge">${product.brand}</span>
+          <h3 class="product-title">${product.name}</h3>
+          <p class="product-description">${product.description}</p>
+          <div class="product-footer">
+            <span class="product-price">$${product.price.toFixed(2)}</span>
+            <button class="btn btn-add-cart" onclick="addToCart('${product.id}')">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Cart Functions
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      saveCart();
+      updateCartBadge();
+      showCartNotification();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      saveCart();
+      updateCartBadge();
+      renderCart();
+    }
+
+    function updateQuantity(productId, change) {
+      const item = cart.find(item => item.id === productId);
+      if (!item) return;
+
+      item.quantity += change;
+      if (item.quantity <= 0) {
+        removeFromCart(productId);
+        return;
+      }
+
+      saveCart();
+      renderCart();
+      updateCartBadge();
+    }
+
+    function saveCart() {
+      localStorage.setItem('mmsCart', JSON.stringify(cart));
+    }
+
+    function updateCartBadge() {
+      const badge = document.getElementById('cartBadge');
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (total > 0) {
+        badge.textContent = total;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      const totalDiv = document.getElementById('cartTotal');
+
+      if (cart.length === 0) {
+        container.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+        totalDiv.style.display = 'none';
+        return;
+      }
+
+      totalDiv.style.display = 'block';
+      container.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div class="cart-item-image">
+            ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);" onerror="this.parentElement.innerHTML='🎣'" />` : '🎣'}
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity}</div>
+          </div>
+          <div class="cart-item-actions">
+            <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">−</button>
+            <span>${item.quantity}</span>
+            <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+            <button class="quantity-btn" onclick="removeFromCart('${item.id}')" style="margin-left:0.5rem;">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const shipping = 5.00;
+      const total = subtotal + shipping;
+
+      document.getElementById('cartSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cartTotalAmount').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cartModal');
+      modal.classList.toggle('active');
+      if (modal.classList.contains('active')) {
+        renderCart();
+      }
+    }
+
+    function showCartNotification() {
+      // Simple notification - you can enhance this
+      const btn = document.querySelector('.btn-cart');
+      btn.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        btn.style.transform = 'scale(1)';
+      }, 200);
+    }
+
+    function goToCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      // Save cart for checkout page
+      window.location.href = 'checkout.html';
+    }
+
+    // Close modal on outside click
+    document.getElementById('cartModal').addEventListener('click', (e) => {
+      if (e.target.id === 'cartModal') {
+        toggleCart();
+      }
+    });
+
+    // Initialize on load
+    init();
+  </script>
+</body>
+</html>
