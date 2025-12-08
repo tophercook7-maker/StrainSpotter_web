@@ -1,12 +1,33 @@
 # Exclude everything by default
-*
+/*
 
-# But include the project directories we want to track
-!Desktop/
-!Desktop/MixedMakerShopSite/
-!Desktop/MixedMakerShopSite/**
+# But include the project directory
+!/Desktop/
+!/Desktop/MixedMakerShopSite/
+!/Desktop/MixedMakerShopSite/**
 
-# Exclude common system and personal files
+# Include root-level project files if they exist
+!/.gitignore
+!/.deploy-trigger
+!/README.md
+!/AUDIT_REPORT.md
+!/PROJECT_ASSESSMENT.md
+!/VALIDATION_REPORT.md
+!/VOICEOVER_SETUP.md
+!/app/
+!/components/
+!/public/
+!/package.json
+!/package-lock.json
+!/netlify.toml
+!/next.config.ts
+!/tsconfig.json
+!/postcss.config.mjs
+!/eslint.config.mjs
+!/make_voiceover.mjs
+!/types/
+
+# Exclude common system files
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -22,7 +43,7 @@
 *.swp
 *.tmp
 
-# Exclude personal directories
+# Exclude personal directories (even if somehow included)
 Documents/
 Downloads/
 Movies/
@@ -48,7 +69,7 @@ Library/
 .gem/
 .nvm/
 
-# Exclude system files
+# Exclude system and config files
 .CFUserTextEncoding
 .app-store/
 .augment/
@@ -84,12 +105,3 @@ Library/
 .zshrc.bak.*
 .zshrc.save
 .zsh_sessions/
-
-# Exclude project-specific files we don't want to track
-Desktop/MixedMakerShopSite/.gitignore.local
-Desktop/MixedMakerShopSite/.netlify/
-Desktop/MixedMakerShopSite/netlify/
-
-# Allow specific files at root if needed
-!.gitignore
-!.deploy-trigger
